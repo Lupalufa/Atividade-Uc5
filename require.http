@@ -1,0 +1,51 @@
+### Listar todos os agendamentos
+
+GET http://localhost:3000/
+Content-Type: application/json
+
+###
+
+### Listar somente 1 agendamento
+
+GET http://localhost:3000/1
+Content-Type: application/json
+
+###
+
+###
+
+POST http://localhost:3000/
+Content-Type: application/json
+
+{
+    "id": "1",
+    "cliente": "pessoa1",
+    "servico": "unhas",
+    "profissional": "Cleide",
+    "data_hora": "18/02/2025 16:28",
+    "status": "confirmado"
+}
+
+###
+
+###
+
+PUT  http://localhost:3000/1
+Content-Type: application/json
+
+{
+    "novoCliente": "Bianca",
+    "novoServico": "cabelo",
+    "novoProfissional": "Adenusa",
+    "novaData_hora": "20/02/2025 16:39",
+    "novoStatus": "ausente"
+}
+
+###
+
+###
+
+DELETE http://localhost:3000/1
+Content-Type: application/json
+
+###

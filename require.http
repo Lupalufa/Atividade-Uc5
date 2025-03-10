@@ -18,12 +18,10 @@ POST http://localhost:3000/
 Content-Type: application/json
 
 {
-    "id": "1",
-    "cliente": "pessoa1",
-    "servico": "unhas",
-    "profissional": "Cleide",
-    "data_hora": "18/02/2025 16:28",
-    "status": "confirmado"
+    "cliente": "Maria",
+    "servico": "Cabelo",
+    "data_hora": "2025-04-10T19:00:00+00",
+    "status": "Ausente"
 }
 
 ###
@@ -45,7 +43,7 @@ Content-Type: application/json
 
 ###
 
-DELETE http://localhost:3000/1
+DELETE http://localhost:3000/7
 Content-Type: application/json
 
 ###

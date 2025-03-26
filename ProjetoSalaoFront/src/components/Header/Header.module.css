@@ -1,0 +1,13 @@
+.cabeca {
+    background-color: aqua;
+    display: flex;
+}
+
+.logo {
+
+}
+
+.navbar {
+    display: flex;
+    justify-content: flex-end;
+}

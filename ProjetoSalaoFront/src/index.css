@@ -1,0 +1,13 @@
+:root {
+ --cor-titulos: #FFA800;
+ --cor-gradiante-numeros: background: linear-gradient(180deg, rgba(255, 160, 160, 0.80) 0%, #5A1A1A 100%);
+}
+
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}

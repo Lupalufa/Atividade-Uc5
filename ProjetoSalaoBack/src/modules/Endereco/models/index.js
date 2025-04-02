@@ -36,6 +36,6 @@ class EnderecoModel {
         const resposta = await axios.get(`https://viacep.com.br/ws/${cep}/json/`)
         const {logradouro, complemento, bairro, localidade, uf} = resposta.data
         const dados = [id, cep, numero, ponto_referencia, logradouro, complemento, bairro, localidade, uf]
-        const consulta = `update salao_endereco set cep = $ , numero = $ , ponto_referencia = $ , logradouro = $ , complemento = $ , bairro = $ , localidade = $ , uf = $`
+        const consulta = `update salao_endereco set cep = $2 , numero = $3 , ponto_referencia = $4 , logradouro = $5 , complemento = $6 , bairro = $7 , localidade = $8 , uf = $9 where id = $1`
     }
 }

@@ -6,29 +6,39 @@ class EnderecoModel {
         const resposta = await axios.get(`https://viacep.com.br/ws/${cep}/json/`)
         const {logradouro, complemento, bairro, localidade, uf} = resposta.data
         const dados = [id, cep, numero, ponto_referencia, logradouro, complemento, bairro, localidade, uf]
-        const consulta = `insert into`
+        const consulta = `insert into salao_enderecos(id_cliente, cep, numero, ponto_referencia, logradouro, complemento, bairro, localidade, uf)
+                            values($1, $2, $3, $4, $5, $6, $7, $8, $9) returning *`
+        const resultado = await pool.query(consulta, dados)
+        return resultado.rows
     }
 
     static async listarEndereco(){
         const consulta = `select * from salao_enderecos`
-        const resultado = pool.query(consulta)
+        const resultado = await pool.query(consulta)
         return resultado.rows
     }
 
     static async listarEnderecoCliente(cliente){
         const dados = [cliente]
         const consulta = `
-        select cliente.*, endereco.* 
+        select salao_cliente.*, salao_enderecos.* 
         from salao_enderecos join salao_cliente 
-        on salao_cliente.id = salao_enderecos.id_cliente`
-        const resultado = pool.query(consulta, dados)
+        on salao_cliente.id = salao_enderecos.id_cliente where id_cliente = $1`
+        const resultado = await pool.query(consulta, dados)
         return resultado.rows
     }
 
     static async listarEnderecoCidade(cidade){
         const dados = [`%${cidade}%`]
-        const consulta = `select * from salao_enderecos where lower(logradouro) like lower($1)`
-        const resultado =  pool.query(consulta, dados)
+        const consulta = `select * from salao_enderecos where lower(localidade) like lower($1)`
+        const resultado = await pool.query(consulta, dados)
+        return resultado.rows
+    }
+
+    static async listarEnderecoCEP(cep){
+        const dados = [cep]
+        const consulta = `select * from salao_enderecos where cep = $1`
+        const resultado = await pool.query(consulta, dados)
         return resultado.rows
     }
 
@@ -36,6 +46,10 @@ class EnderecoModel {
         const resposta = await axios.get(`https://viacep.com.br/ws/${cep}/json/`)
         const {logradouro, complemento, bairro, localidade, uf} = resposta.data
         const dados = [id, cep, numero, ponto_referencia, logradouro, complemento, bairro, localidade, uf]
-        const consulta = `update salao_endereco set cep = $2 , numero = $3 , ponto_referencia = $4 , logradouro = $5 , complemento = $6 , bairro = $7 , localidade = $8 , uf = $9 where id = $1`
+        const consulta = `update salao_enderecos set cep = $2 , numero = $3 , ponto_referencia = $4 , logradouro = $5 , complemento = $6 , bairro = $7 , localidade = $8 , uf = $9 where id_cliente = $1 returning *`
+        const resultado = await pool.query(consulta, dados)
+        return resultado.rows
     }
 }
+
+module.exports = EnderecoModel

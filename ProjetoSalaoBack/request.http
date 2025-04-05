@@ -1,0 +1,15 @@
+###
+
+POST http://localhost:3000
+Content-Type: application/json
+
+
+{
+	"nome": "João",
+	"idade": 20,
+	"contato": "(84) 99126-2414",
+	"cpf": "700.177.014-06"
+}
+
+
+###

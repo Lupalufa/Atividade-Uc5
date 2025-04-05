@@ -6,6 +6,7 @@ create table if not exists salao_agendamento(
 	forma_pagamento varchar(30) not null,
 	observacoes text,
 	confirmacao varchar(20),
+	data_hora timestamp,
 	constraint fk_cliente_agendamento_id foreign key (id_cliente) references salao_cliente(id),
 	constraint fk_endereco_agendamento_id foreign key (id_endereco) references salao_enderecos(id)
 );
@@ -17,7 +18,7 @@ create table if not exists salao_cliente (
 	nome varchar(40) not null,
 	idade int not null,
 	contato char(15),
-	data_hora timestamp
+	cpf char(15)
 );
 
 
